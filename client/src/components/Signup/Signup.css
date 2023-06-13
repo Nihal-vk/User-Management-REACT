@@ -1,0 +1,11 @@
+.signup{
+    margin-top: 140px;
+}
+
+.errormsg{
+    display: block;
+      color: red;
+      margin-top: -24px;
+      margin-right: 45px;
+      margin-bottom: 10px;
+  }
