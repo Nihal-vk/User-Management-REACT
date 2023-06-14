@@ -7,6 +7,7 @@ import {
   MDBCol,
 } from "mdb-react-ui-kit";
 import "./Adminhome.css";
+import { baseUrlAdmin } from "../../Constants/Constant";
 import { Link } from "react-router-dom";
 
 export default function Adminhome() {
@@ -16,7 +17,7 @@ export default function Adminhome() {
   }, []);
 
   const getProducts = async () => {
-    let result = await fetch("http://localhost:3001/admin/getUser", {
+    let result = await fetch(`${baseUrlAdmin}user`, {
       headers: {
         authorization: JSON.parse(localStorage.getItem("token")),
       },
@@ -27,7 +28,7 @@ export default function Adminhome() {
 
   const deleteUser = async (id) => {
     console.warn(id);
-    let result = await fetch(`http://localhost:3001/admin/user/${id}`, {
+    let result = await fetch(`${baseUrlAdmin}user/${id}`, {
       method: "Delete",
     });
     result = await result.json();
@@ -39,7 +40,7 @@ export default function Adminhome() {
   const searchHAndle = async (event) => {
     let key = event.target.value;
     if (key) {
-      let result = await fetch(`http://localhost:3001/admin/search/${key}`);
+      let result = await fetch(`${baseUrlAdmin}search/${key}`);
       result = await result.json();
 
       if (result) {
@@ -78,12 +79,16 @@ export default function Adminhome() {
                 <td>{item.name}</td>
                 <td>{item.email}</td>
                 <td>
-                  <MDBBtn onClick={() => deleteUser(item._id)}>Delete</MDBBtn>
-                </td>
-                <td>
-                  {" "}
-                  <MDBBtn className="me-1" color="success">
-                    <Link to={"/edituser/" + item._id}>Edit user</Link>
+                  <MDBBtn className="me-1" color="primary">
+                    <Link className="btntxt" to={"/edituser/" + item._id}>
+                      Edit user
+                    </Link>
+                  </MDBBtn>
+                  <MDBBtn
+                    className="editbtn"
+                    color="danger"
+                    onClick={() => deleteUser(item._id)}>
+                    Delete
                   </MDBBtn>
                 </td>
               </tr>

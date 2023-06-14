@@ -12,6 +12,7 @@ import {
   MDBIcon,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
+import { baseUrlAdmin } from "../../Constants/Constant";
 import "./Edituser.css";
 
 function Edituser() {
@@ -27,7 +28,7 @@ function Edituser() {
   }, []);
 
   const getUserDetails = async () => {
-    let result = await fetch(`http://localhost:3001/admin/user/${params.id}`);
+    let result = await fetch(`${baseUrlAdmin}user/${params.id}`);
     result = await result.json();
     setName(result.name);
     setEmail(result.email);
@@ -36,7 +37,7 @@ function Edituser() {
 
   const editUser = async () => {
     console.log(name, password, email);
-    let result = await fetch(`http://localhost:3001/admin/user/${params.id}`, {
+    let result = await fetch(`${baseUrlAdmin}user/${params.id}`, {
       method: "Put",
       body: JSON.stringify({ name, email, password }),
       headers: {

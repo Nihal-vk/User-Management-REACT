@@ -12,6 +12,7 @@ import {
   MDBCheckbox,
 } from "mdb-react-ui-kit";
 import "./Signup.css";
+import { baseUrl } from "../../Constants/Constant";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {
@@ -33,7 +34,7 @@ function Signup() {
       return false;
     }
     console.warn(name, email, password);
-    let result = await fetch("http://localhost:3001/signUp", {
+    let result = await fetch(`${baseUrl}signUp`, {
       method: "post",
       body: JSON.stringify({ name, email, password }),
       headers: {

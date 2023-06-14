@@ -83,11 +83,11 @@ function Navb() {
                         <Link to="adduser">Add-User</Link>
                       </MDBNavbarLink>
                     </MDBNavbarItem>
-                    <MDBNavbarItem>
+                    {/* <MDBNavbarItem>
                       <MDBNavbarLink href="#">
                         <Link to="edituser">Edit-User</Link>
                       </MDBNavbarLink>
-                    </MDBNavbarItem>
+                    </MDBNavbarItem> */}
                     <MDBNavbarItem>
                       <MDBNavbarLink href="#">
                         <Link onClick={logoutAdmin} to="/admin">

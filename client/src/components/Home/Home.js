@@ -22,7 +22,6 @@ function Home() {
     dispatch(userLogin({userData:name}))
   },[])
   const userdata = useSelector((state)=>state.userData.value)
-  console.log(userdata);
   return (
     <div className="container header">
       <header>

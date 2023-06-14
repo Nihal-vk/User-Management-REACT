@@ -12,6 +12,7 @@ import {
   MDBCheckbox,
 } from "mdb-react-ui-kit";
 import "./Adduser.css";
+import { baseUrlAdmin } from "../../Constants/Constant";
 import { useNavigate } from "react-router-dom";
 
 function Adduser() {
@@ -27,7 +28,7 @@ function Adduser() {
     }
 
     console.log(name, password, email);
-    let result = await fetch("http://localhost:3001/admin/adduser", {
+    let result = await fetch(`${baseUrlAdmin}user`, {
       method: "post",
       body: JSON.stringify({ name, email, password }),
       headers: {

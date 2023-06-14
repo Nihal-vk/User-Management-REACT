@@ -10,11 +10,12 @@ import {
 } from "mdb-react-ui-kit";
 import "./Login.css";
 import { userLogin } from "../../Redux/Username";
-import { useNavigate,Link } from "react-router-dom";
+import { baseUrl } from "../../Constants/Constant";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 function Login() {
-  const dispatch =useDispatch()
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ function Login() {
   }, []);
 
   const handleLogin = async () => {
-    let result = await fetch("http://localhost:3001/login", {
+    let result = await fetch(`${baseUrl}login`, {
       method: "post",
       body: JSON.stringify({ email, password }),
       headers: {
@@ -36,7 +37,7 @@ function Login() {
     });
     result = await result.json();
     if (result.auth) {
-      dispatch(userLogin({userData:result.name}))
+      dispatch(userLogin({ userData: result.name }));
       localStorage.setItem("user", JSON.stringify(result.user));
       localStorage.setItem("token", JSON.stringify(result.auth));
       navigate("/");
@@ -87,7 +88,7 @@ function Login() {
               <p className="small fw-bold mt-2 pt-1 mb-2">
                 Don't have an account?{" "}
                 <a href="#!" className="link-danger">
-                <Link to='/signup'>Register</Link>
+                  <Link to="/signup">Register</Link>
                 </a>
               </p>
             </div>
